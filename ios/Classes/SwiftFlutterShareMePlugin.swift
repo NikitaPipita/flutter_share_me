@@ -92,7 +92,7 @@ public class SwiftFlutterShareMePlugin: NSObject, FlutterPlugin, SharingDelegate
         }
         
         var characterSet = CharacterSet.urlQueryAllowed
-        characterSet.insert(charactersIn: "?&")
+        characterSet.subtract(CharacterSet(charactersIn: "&+"))
         let whatsAppURL  = NSURL(string: whatsURL.addingPercentEncoding(withAllowedCharacters: characterSet)!)
         if UIApplication.shared.canOpenURL(whatsAppURL! as URL)
         {
